@@ -47,7 +47,8 @@ function eventlisteners() {
 
 
 // display forecast
-function displayForecast(){
+function displayForecast(response){
+    console.log(response.data.daily);
     let forecast = document.querySelector('#weather-forecast');
     let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'fri'];
 
@@ -134,9 +135,20 @@ function changeInfo(event) {
 }
 
 
+// get forecast
+function getForecast(coordinates){
+    console.log(coordinates);
+    let key = "9d49cb1787297e12afd385e4fcc226c8";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
+    console.log(apiUrl);
+
+    axios.get(apiUrl).then(displayForecast)
+}
+
+
 // get the location details
 function getLocationInfo(response) {
-    console.log(response);
+    // console.log(response);
 
     // get the city name 
     city.innerHTML = response.data.name;
@@ -163,6 +175,8 @@ function getLocationInfo(response) {
     icon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     icon.setAttribute('alt', response.data.weather[0].description);
 
+
+    getForecast(response.data.coord)
 }
 
 
@@ -238,9 +252,7 @@ function searchCity(city) {
 function searchLocation(position) {
 
     let key = "9d49cb1787297e12afd385e4fcc226c8";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${
-        position.coords.latitude
-      }&lon=${position.coords.longitude}&appid=${key}&units=metric`;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${key}&units=metric`;
 
     axios.get(apiUrl).then(getLocationInfo)
 }
@@ -255,8 +267,5 @@ function showPosition(event) {
 
 
 // put tehran of default 
-searchCity('Tehran')
-
-
-// diaplay the forecast
+searchCity('Tehran');
 displayForecast()
