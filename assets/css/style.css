@@ -261,6 +261,7 @@ span.gitHub-link{
 span.gitHub-link a{
     color: var(--accent-color);
     text-decoration: none;
+    font-weight:700;
 }
 
 
