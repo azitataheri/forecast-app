@@ -42,40 +42,49 @@ function eventlisteners() {
 
     // change farenhiet to celsius 
     celsiusDegree.addEventListener('click', displayCelsiusTemprature)
+
 }
 
 
 
 // display forecast
 function displayForecast(response){
-    console.log(response.data.daily);
+
     let forecast = document.querySelector('#weather-forecast');
-    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'fri'];
+
+    // put the days(data.daily) in an array
+    let forecastDaily = response.data.daily;
 
     // create the row for show the forecast
     let forecastHtml = `<div class="row">`;
-    days.forEach(function(day) {
-        
-        forecastHtml= forecastHtml +
-         `
-         <div class="col-sm-6 col-md-6 mt-3">
-             <div class="d-flex justify-content-between align-items-center forecast__info">
-                 <div class=""><img src="./assets/img/s.png" width="40" height="40"></div>
-                 <div>
-                     <ul class="">
-                         <li>${day}</li>
-                         <li>Rain</li>
-                     </ul>
-                 </div>
-                 <div
-                     class="forecast__info--temp d-flex align-items-center justify-content-center mr-0">
-                     <span>25°</span>
-                     <span>/</span>
-                     <span>35°</span>
+    forecastDaily.forEach(function(forecastDay, index) {
+
+        // if index >6 dont show  because we need to 6 days
+        if(index <6){
+            forecastHtml= forecastHtml +
+             `
+             <div class="col-sm-6 col-md-6 mt-3">
+                 <div class="d-flex justify-content-between align-items-center forecast__info">
+                     <div class="">
+                     <img src="http://openweathermap.org/img/wn/${forecastDay.weather[0].icon}@2x.png" width="40" height="40">
+                     </div>
+                     <div>
+                         <ul class="">
+                             <li>${formatDate(forecastDay.dt)}</li>
+                             <li class="text-nowrap">${forecastDay.weather[0].description}</li>
+                         </ul>
+                     </div>
+                     <div
+                         class="forecast__info--temp d-flex align-items-center justify-content-center mr-0">
+                         <span class="text-secondary">${Math.round(forecastDay.temp.min)}°</span>
+                         <span>/</span>
+                         <span>${Math.round(forecastDay.temp.max)}°</span>
+                     </div>
                  </div>
              </div>
-         </div>
-         `
+             `
+        }
+
     });
 
     forecastHtml = forecastHtml + `</div>`
@@ -83,6 +92,8 @@ function displayForecast(response){
     // put the forecasthtml content in the forecast html
     forecast.innerHTML  =  forecastHtml;
 }
+
+
 
 // convert celsius to farenheit
 function displayFarenhietTemprature(event) {
@@ -96,6 +107,7 @@ function displayFarenhietTemprature(event) {
     // remove the active class
     celsiusDegree.classList.remove('active');
     farenhietDegree.classList.add('active');
+
 }
 
 
@@ -136,19 +148,20 @@ function changeInfo(event) {
 
 
 // get forecast
+// coordinates is the response.data.coord that pass to this function from the getLocationInfo response
 function getForecast(coordinates){
-    console.log(coordinates);
+
     let key = "9d49cb1787297e12afd385e4fcc226c8";
     let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${key}&units=metric`;
-    console.log(apiUrl);
 
+    // after add the get request happen the displayForecast function
     axios.get(apiUrl).then(displayForecast)
+
 }
 
 
 // get the location details
 function getLocationInfo(response) {
-    // console.log(response);
 
     // get the city name 
     city.innerHTML = response.data.name;
@@ -171,12 +184,15 @@ function getLocationInfo(response) {
     //status
     weatherCondition.innerHTML = `${response.data.weather[0].description}`
 
-    // set icon
+    // set icon img
     icon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+
+    // set icon img alt
     icon.setAttribute('alt', response.data.weather[0].description);
 
-
+    // get the coord from the data response and passed as coordinates parameter  to the  getForecast function
     getForecast(response.data.coord)
+
 }
 
 
@@ -238,13 +254,31 @@ function getCurrentDate(latestDate) {
 }
 getCurrentDate(now);
 
+//convert response dt in displayForecast function to the week days 
+function formatDate(times){
 
+    // times is the forecastDay.weather.dt that passes to the formatDate function
+    let date = new Date(times * 1000);
+
+     // put the date.getDay() in day
+    let day = date.getDay();
+
+    // create the days array and use it
+    let days = [
+       'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
+    ]
+
+    return days[day];
+
+}
 
 // search the current city by geolocation
 function searchCity(city) {
+
     let key = "9d49cb1787297e12afd385e4fcc226c8";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}&units=metric`;
     axios.get(apiUrl).then(getLocationInfo);
+
 }
 
 
@@ -255,6 +289,7 @@ function searchLocation(position) {
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${key}&units=metric`;
 
     axios.get(apiUrl).then(getLocationInfo)
+    
 }
 navigator.geolocation.getCurrentPosition(showPosition)
 
@@ -268,4 +303,5 @@ function showPosition(event) {
 
 // put tehran of default 
 searchCity('Tehran');
+
 displayForecast()

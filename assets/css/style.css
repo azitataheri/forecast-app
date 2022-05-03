@@ -193,7 +193,7 @@ body {
     text-align:left;
     padding-left: 40px;
     color: var(--secondary-light-color);
-    font-size: 60px;
+    font-size: 50px;
     font-weight:700;
     letter-spacing: 1px;
 }
@@ -301,6 +301,11 @@ span.gitHub-link a{
     color: var(--main-text-color);
 }
 
+.forecast__info img{
+    width: 35px;
+    height: 35px;
+    margin-left: 5px;
+}
 
 .date-details{
     background-color: var(--accent-color);
