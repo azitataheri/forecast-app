@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--  fontawesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+        crossorigin="anonymous" />
+    <!--  /fontawesome -->
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- /Bootstrap -->
+
+    <!--  styles -->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!-- /styles -->
+
+    <!-- axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- /axios -->
+
+    <title>Weather App</title>
+</head>
+
+<body>
+    <div class="container-fluid top-title py-1">
+        <div class="row justify-content-around">
+            <h5 class="text-center">Weather App</h5>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="container app-wrapper">
+            <!-- header -->
+            <div class="header">
+                <div class="header__title" id="title">Tehran <i class="fa fa-map-marker-alt fs-4"></i></div>
+                <div class="details-wrapper">
+                    <div class="details-wrapper__status text-center">
+                        <img class="pt-4" src="" id="icon" alt="">
+                    </div>
+                    <div class="d-flex justify-content-center pt-2">
+                        <span id="status" class="text-light pt-3">Cloudy</span>
+                    </div>
+                </div>
+            </div>
+            <!-- /header -->
+
+            <!-- Includes of forecast/ date details/ form of search temprature and location-->
+            <div class="row">
+                <div class="col-xl-7 order-1 order-xl-0">
+                    <div class="row" style="margin-top: 90px;">
+                        <div class="col-md-8">
+                            <!-- forecast content-->
+                            <div class="forecast h-100" id="weather-forecast"></div>
+                             <!-- /forecast content-->
+                        </div>
+                        <div class="col-md-4">
+                            <div
+                                class="d-flex align-items-center justify-content-center date-details h-100 pt-3 pt-md-0 mt-3 mt-md-0">
+                                <ul class="p-0">
+                                    <li>
+                                        <h5 id="date"></h5>
+                                    </li>
+                                    <li>
+                                        <h2 id="day"><b></b></h2>
+                                    </li>
+                                    <li>
+                                        <h6 id="hour"></h6>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 order-0 order-xl-1">
+                    <div class="weather-details">
+                        <div class="weather-details__content">
+                            <!-- form -->
+                            <form class="d-flex" action="#" id="form">
+                                <!-- search input -->
+                                <input class="weather-details__search" id="search" type="text" autocomplete="off"
+                                    autofocus="on" placeholder="search the city...">
+                                <button class="send" type="submit"></button>
+                                 <!-- /search input -->
+                            </form>
+                             <!-- /form -->
+                             
+                             <!-- show the city -->
+                            <div class="location-details">
+                                <div class="city" id="location-details__title">Tehran</div>
+                            </div>
+                            <!-- /show the city -->
+
+                            <!-- temprature details -->
+                            <div class="row justify-content-around">
+                                <div class="d-flex justify-content-center col-md-6">
+                                    <span class="now-temp" id="temprature">
+                                        25
+                                    </span>
+                                    <div class="temps-section pt-3">
+                                        <a href="#" class="active" id="celsius">°C</a>
+                                        <span class="seprator">|</span>
+                                        <a href="#" id="farenhiet">°F</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="weather-condition">
+                                        <div class="weather-condition__details">
+                                            <ul>
+                                                <li id="humidity">Humidity: 34%</li>
+                                                <li id="wind">Wind: 5 km/h</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- give the current location temprature details -->
+                                    <button class="current btn rounded-50 d-block mx-auto" id="current">Current</button>
+                                    <!-- /give the current location temprature details -->
+                                </div>
+                            </div>
+                             <!-- /temprature details -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /Includes of forecast/ date details/ form of search temprature and location-->
+
+        </div>
+    </div>
+    <span class="py-1 px-2 gitHub-link"><b>open-source code</b> by Azita Taheri</span>
+    <!-- scripts -->
+    <script src="./assets/js/app.js"></script>
+    <!-- /scripts -->
+</body>
+
+</html>

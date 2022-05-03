@@ -1,0 +1,339 @@
+/* root colors */
+:root {
+    --body-color: #d5dae6;
+    --primary-color: #090e27;
+    --primary-lighten-color: #0b1130;
+    --secondary-dark-color: #3f2e65;
+    --secondary-color: #1b204b;
+    --secondary-light-color: #4010a5;
+    --accent-color: #024961;
+    --gray-color: #b7cae1;
+    --main-text-color: #ffffff;
+}
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    background-color: var(--body-color);
+}
+
+.top-title{
+    background-color: var(--primary-color);
+    color: var(--main-text-color);
+    letter-spacing: 2px;
+}
+
+#celsius , #farenhiet{
+    text-decoration: none;
+    font-weight: 400;
+}
+
+/* active the celisus or farenheit */
+.active{
+    color: var(--secondary-light-color);
+}
+
+.app-wrapper {
+    background-color: var(--primary-color);
+    height: 84vh;
+    margin-top: 80px;
+    border-radius: 40px;
+    padding: 50px;
+    box-shadow: -7px -5px 15px rgb(182, 182, 189);
+}
+
+.header {
+    background-image: url(../img/tehran.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 350px;
+    border-radius: 40px;
+    border: none;
+    opacity: 0.8;
+    position: relative;
+    background-color: rgb(143, 177, 216);
+}
+
+
+.header .header__title {
+    position: absolute;
+    top: 110px;
+    left: 100px;
+    color: var(--main-text-color);
+    opacity: 1;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+.header .header__title i {
+    color: #1487ad;
+    padding-right: 5px;
+    text-transform: capitalize;
+}
+
+
+.seprator {
+    padding: 0 3px;
+    color: var(--secondary-light-color);
+}
+
+
+.details-wrapper {
+    position: absolute;
+    left: -50px;
+    top: 40%;
+    background-color: var(--secondary-dark-color);
+    width: 105px;
+    height: 200px;
+    border-radius: 0 40px 40px 0;
+}
+
+
+.details-wrapper p {
+    text-align: center;
+    padding-top: 10px;
+    color: var(--main-text-color);
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+.details-wrapper__status {
+    height: 55%;
+    background-color: #107b9e;
+    border-radius: 0 30px 30px 20px;
+    z-index: 1;
+}
+
+
+.details-wrapper__status img {
+    display: block;
+    margin: 0 auto;
+    padding-top: 15px;
+    width: 60px;
+    /* height: 80px; */
+}
+
+
+.details-wrapper__status #status{
+    color: var(--secondary-light-color);
+    font-weight: bold;
+}
+
+
+.weather-details {
+    position: relative;
+    margin-top: 40px;
+}
+
+
+.weather-details__content {
+    background-color: var(--primary-lighten-color);
+    height: 100%;
+    border-radius: 40px;
+    padding: 20px 0;
+    letter-spacing: 1px;
+}
+
+
+.current {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    color: var(--main-text-color);
+    padding: 10px 57px;
+    letter-spacing: 1px;
+}
+
+.current:focus{
+    outline: none;
+}
+
+.current:hover{
+    color: #fff;
+}
+
+.weather-details .weather-details__search {
+    width: 90%;
+    height: 38px;
+    margin: 5px 0 20px 20px;
+    background-color: transparent;
+    border-radius: 30px;
+    border: 1px solid #1B204E;
+    outline: none;
+    color: var(--main-text-color);
+    padding-left: 15px;
+    caret-color: var(--accent-color);
+    position: relative;
+}
+
+
+.weather-details input[placeholder] {
+    font-size: 16px;
+}
+
+
+.weather-details input[placeholder]:focus::-webkit-input-placeholder {
+    transition: text-indent .5s .5s ease;
+    text-indent: -100%;
+    opacity: 1;
+    color: var(--main-text-color);
+}
+
+
+.weather-details .location-details #location-details__title {
+    text-align:left;
+    padding-left: 40px;
+    color: var(--secondary-light-color);
+    font-size: 60px;
+    font-weight:700;
+    letter-spacing: 1px;
+}
+
+.status-details {
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+
+.status-details span {
+    color: var(--fourth--color);
+}
+
+
+.weather-condition__details {
+    background-color: var(--secondary-color);
+    margin: 0 auto;
+    display: block;
+    border-radius: 10px;
+    width: fit-content;
+}
+
+
+.weather-condition__details ul {
+    color: var(--main-text-color);
+    text-align: center;
+    list-style: none;
+    padding: 10px 30px;
+}
+
+
+button.send {
+    position: absolute;
+    top: 23px;
+    right: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    background: url(../img/search.png) no-repeat right 3px center;
+    background-size: 30px;
+    border: none;
+}
+
+#date{
+    font-weight: 700;
+}
+
+#day{
+    font-weight: 700;
+}
+
+#status{
+    font-size: 13px;
+}
+
+span.gitHub-link{
+    font-style: 10px;
+    border-radius: 0  10px 0 0;
+    color: var(--secondary-light-color);
+    font-weight: 400;
+}
+
+span.gitHub-link b{
+    color: var(--accent-color);
+}
+
+
+
+/*********** Forecast section ***********/
+.forecast h4{
+    font-weight: 700;
+}
+
+.forecast__info{
+    background-color: var(--primary-lighten-color);
+    border-radius: 20px;
+}
+
+
+.forecast__info ul{
+    list-style: none;
+    margin-bottom: 0;
+    padding: 13px;
+}
+
+.forecast__info ul li:nth-child(1){
+    color: var(--main-text-color);
+}
+
+
+.forecast__info ul li:nth-child(2){
+    color: var(--accent-color);
+    font-size: 12px;
+}
+
+.forecast__info .forecast__info--temp{
+    border-radius: 20px;
+    background-color: #1b204b;
+    width: 85px;
+    height: 75px;
+    margin-right: 1px;
+    color: var(--main-text-color);
+}
+
+
+.date-details{
+    background-color: var(--accent-color);
+    border-radius: 20px;
+}
+
+
+.date-details ul{
+    list-style: none;
+    text-align: center;
+    color: var(--gray-color);
+}
+
+
+.date-details ul li:nth-child(2){
+font-weight: 700
+}
+
+
+span.now-temp{
+    font-size: 90px;
+    font-weight: 700;
+    color: var(--secondary-light-color);
+}
+
+
+/************** breakpoints  *************/
+@media screen and (max-width : 1900px ) {
+    .app-wrapper{
+        height: 100%;
+    }
+
+    button.send{
+        right: 20px;
+    }
+}
